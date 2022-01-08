@@ -1,0 +1,121 @@
+.app-container {
+    padding: 30px;
+    height: 100%;
+}
+
+.console-container {
+    background-color: black;
+    height: 85vh;
+    overflow: scroll;
+    padding: 10px;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.contract-container {
+    overflow: scroll;
+    height: 90vh;
+}
+
+code {
+    color: white;
+}
+
+.console-actions {
+    background-color: gray;
+    width: 100%;
+    text-align: right;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    margin: 0 auto;
+    border-radius: 0px 0px 8px 8px;
+}
+
+.console-actions button {
+    margin-left: 5px;
+}
+
+.wallet-header {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.wallet-status {
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+}
+
+.wallet-cta {
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+}
+
+.network-name {
+    margin-right: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 3px;
+    padding-top: 2px;
+    background-color: gray;
+    color: white;
+    border-radius: 15px;
+}
+
+details {
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding: .5em .5em 0;
+}
+
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+
+details[open] {
+    padding: .5em;
+}
+
+details[open] summary {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: .5em;
+}
+
+details > summary:first-of-type {
+    list-style-type: none;
+}
+
+.value-selection {
+    padding: 0px;
+}
