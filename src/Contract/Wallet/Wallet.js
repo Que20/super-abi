@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 class Wallet extends Component {
     constructor(props) {
@@ -21,7 +21,20 @@ class Wallet extends Component {
     }
 
     networkNameLabel = () => {
-        return (<span className='network-name'>{this.props.networkName}</span>)
+        const renderTooltip = (props) => (
+            <Tooltip id="button-tooltip" {...props}>
+              The network you are connected to. Make sure the contract you're reaching is on that network.
+            </Tooltip>
+          );
+        return (
+            <OverlayTrigger
+                placement="left"
+                delay={{ show: 250, hide: 400 }}
+                overlay={renderTooltip}
+            >
+                <span className='network-name'>{this.props.networkName}</span>
+            </OverlayTrigger>
+        )
     }
 
     render() { 
