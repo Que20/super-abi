@@ -36,18 +36,21 @@ class App extends Component {
 
     render() { 
         return (
+            <>
+            <a href="https://github.com/Que20/super-abi"><img loading="lazy" width={149} height={149} src="https://github.blog/wp-content/uploads/2008/12/forkme_right_gray_6d6d6d.png?resize=149%2C149" className="attachment-full size-full github-fork" alt="Fork me on GitHub" data-recalc-dims={1} /></a>
             <div className='app-container'>
-            <Container fluid>
-                <Row>
-                    <Col>
-                        <Contract delegate={this} abi={this.state.abi} account={this.state.account} network={this.state.network}/>
-                    </Col>
-                    <Col>
-                        <Console delegate={this} logs={this.state.logs}/>
-                    </Col>
-                </Row>
-            </Container>
+                <Container fluid>
+                    <Row>
+                        <Col>
+                            <Contract delegate={this} abi={this.state.abi} account={this.state.account} network={this.state.network}/>
+                        </Col>
+                        <Col>
+                            <Console delegate={this} logs={this.state.logs}/>
+                        </Col>
+                    </Row>
+                </Container>
             </div>
+            </>
         )
     }
 
