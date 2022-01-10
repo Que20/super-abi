@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Container, Row, Col, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 class Wallet extends Component {
     constructor(props) {
@@ -17,7 +17,7 @@ class Wallet extends Component {
     }
 
     connectedLabel = () => {
-        return (<>Connected with {this.textWrappedAddress(this.props.address)}</>)
+        return (<span style={{"fontWeight": "bold"}}>Connected with {this.textWrappedAddress(this.props.address)}</span>)
     }
 
     networkNameLabel = () => {
@@ -32,30 +32,28 @@ class Wallet extends Component {
                 delay={{ show: 250, hide: 400 }}
                 overlay={renderTooltip}
             >
-                <span className='network-name'>{this.props.networkName}</span>
+                <div className='network-name'>{this.props.networkName}</div>
             </OverlayTrigger>
         )
     }
 
     render() { 
         return (
-            <div>
-                <div className='wallet-header'>
-                    <div className='wallet-status'>
-                        <div>
-                            {this.props.address !== '' ? this.connectedLabel() : ' '}
-                            <br/>
-                        </div>
-                    </div>
-                    <div className='wallet-cta'>
+            <Container fluid style={{"paddingLeft": "0px", "paddingRight": "0px"}}>
+                <Row>
+                    <Col style={{"paddingTop":"5px"}}>
+                        {this.props.address !== '' ? this.connectedLabel() : ' '}
+                    </Col>
+                    <Col xs="auto" style={{"textAlign":"right", "verticalAlign":"center"}}>
                         {this.props.networkName !== '' ? this.networkNameLabel() : ' '}
+                    </Col>
+                    <Col xs="auto" style={{"textAlign":"right"}}>
                         <Button variant="primary" type="submit" onClick={this.connect}>
                             Connect wallet
                         </Button>
-                    </div>
-                </div>
-                <hr />
-            </div>
+                    </Col>
+                </Row>
+            </Container>
          );
     }
 }
