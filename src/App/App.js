@@ -56,7 +56,6 @@ class App extends Component {
     }
 
     call = (stateMutability, functionName, args, value, gasLimit) => {
-        console.log(gasLimit)
         const fcallback = (error, result) => {
             if (error) {
                 // console.log(error)
@@ -86,17 +85,17 @@ class App extends Component {
             }
         }
         if (['pure', 'view'].includes(stateMutability)) {
-            this.log('🗣 '+functionName+'('+args.toString()+')')
             const f = this.state.eth.contract.methods[functionName].apply(this.state.eth.contract.methods, args)
             const o = { from: this.state.account }
             handleGasLimit(f, o, gasLimit, () => {
+                this.log('🗣 '+functionName+'('+args.toString()+')')
                 f.call(o, fcallback)
             })
         } else {
-            this.log('🗣 '+functionName+'('+args.toString()+')<br/>{ value: '+value+' }')
             const f = this.state.eth.contract.methods[functionName].apply(this.state.eth.contract.methods, args)
             const o = { from: this.state.account, value: value }
             handleGasLimit(f, o, gasLimit, () => {
+                this.log('🗣 '+functionName+'('+args.toString()+')<br/>{ value: '+value+' }')
                 f.send(o, fcallback)
             })
         }
