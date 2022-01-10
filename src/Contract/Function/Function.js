@@ -5,11 +5,11 @@ import Web3 from 'web3';
 class Function extends Component {
     constructor(props) {
         super(props);
-        this.state = { params: {}, tx_value: 0, tx_gas: 0, tx_value_unit: 'Wei' }
+        this.state = { params: {}, tx_value: "0", tx_gas_max: "", tx_value_unit: 'Wei' }
     }
 
     handleChange = (e) => {
-        if (['tx_value_unit', 'tx_value', 'tx_gas'].includes(e.target.name)) {
+        if (['tx_value_unit', 'tx_value', 'tx_gas_max'].includes(e.target.name)) {
             // console.log(""+e.target.name+" => "+e.target.value)
             this.setState({ [e.target.name]: e.target.value });
             return
@@ -21,7 +21,6 @@ class Function extends Component {
 
     submit = () => {
         let p = this.state.params
-        // console.log(p)
         let paramsArray = []
         if (Object.keys(p).length === 1 && p[""] !== null) {
             paramsArray.push(p[""])
@@ -34,7 +33,7 @@ class Function extends Component {
         if (this.state.tx_value_unit !== 'wei') {
             value = Web3.utils.toWei(value, this.state.tx_value_unit)
         }
-        this.props.delegate.call(this.props.stateMutability, this.props.name, paramsArray, value, this.state.tx_gas)
+        this.props.delegate.call(this.props.stateMutability, this.props.name, paramsArray, value, this.state.tx_gas_max)
     }
 
     render() { 
@@ -92,7 +91,7 @@ class Function extends Component {
                     <br/>
                     {/* Gas */}
                     <Form.Group>
-                        <Form.Control label='Gas limit' name='tx_gas' placeholder="Gas limit" />
+                        <Form.Control label='Gas limit' name='tx_gas_max' placeholder="Gas limit" />
                     </Form.Group>
                     <br/>
                     <Button variant="primary" onClick={this.submit}>
