@@ -4,8 +4,8 @@ import { Form, Button } from 'react-bootstrap';
 class Info extends Component {
     constructor(props) {
         super(props);
-        // this.state = { abi: '', address: "" }
-        this.state = { abi: this.abi(), address: "0x7b94F2e3c3A9fd2E8Ce06FB7b819A27C24BbC115" }
+        this.state = { abi: '', address: "" }
+        // this.state = { abi: this.abi(), address: "0x7b94F2e3c3A9fd2E8Ce06FB7b819A27C24BbC115" }
     }
 
     abi = () => {
