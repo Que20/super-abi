@@ -8,17 +8,32 @@
     height: 100%;
 }
 
+@media (min-width: 1000px) {
+    .console-container {
+        height: 90vh;
+    }
+    .contract-container {
+        height: 95vh;
+        overflow: scroll;
+    }
+}
+
+@media (max-width: 1000px) {
+    .console-container {
+        height: 30vh;
+    }
+}
+
 .console-container {
     background-color: black;
-    height: 85vh;
-    overflow: scroll;
     padding: 10px;
     border-radius: 8px 8px 0px 0px;
+    min-width: 450px;
+    overflow: scroll;
 }
 
 .contract-container {
-    overflow: scroll;
-    height: 90vh;
+    min-width: 450px;
 }
 
 code {
