@@ -54,22 +54,50 @@ class App extends Component {
         )
     }
 
-    call = (stateMutability, functionName, args, value, gas) => {
-        this.log('🗣 '+functionName+'('+args.toString()+')<br/>{ value: '+value+', gas: '+gas+' }')
-        const callback = (error, result) => {
+    call = (stateMutability, functionName, args, value, gasLimit) => {
+        console.log(gasLimit)
+        const fcallback = (error, result) => {
             if (error) {
-                console.log(error)
+                // console.log(error)
                 this.log(JSON.stringify(error))
             }
             if (result) {
-                console.log(result)
+                // console.log(result)
                 this.log(result)
             }
         }
+        const handleGasLimit = function(functionToCall, functionOption, gasLimit, callback) {    
+            if (gasLimit !== '') {
+                functionToCall.estimateGas(functionOption, (error, estimatedGas) => {
+                    if (error) {
+                        this.log("🚫 Unable to estimate gas fees for "+functionName)
+                        this.log(error)
+                        return
+                    }
+                    if (parseInt(gasLimit) < parseInt(estimatedGas)) {
+                        callback()
+                    } else {
+                        this.log("🚫 base fee excedes gas limit - estimated fee: "+estimatedGas)
+                    }
+                })
+            } else {
+                callback()
+            }
+        }
         if (['pure', 'view'].includes(stateMutability)) {
-            this.state.eth.contract.methods[functionName].apply(this.state.eth.contract.methods, args).call({ from: this.state.account, value: value }, callback)
+            this.log('🗣 '+functionName+'('+args.toString()+')')
+            const f = this.state.eth.contract.methods[functionName].apply(this.state.eth.contract.methods, args)
+            const o = { from: this.state.account }
+            handleGasLimit(f, o, gasLimit, () => {
+                f.call(o, fcallback)
+            })
         } else {
-            this.state.eth.contract.methods[functionName].apply(this.state.eth.contract.methods, args).send({ from: this.state.account, value: value }, callback)
+            this.log('🗣 '+functionName+'('+args.toString()+')<br/>{ value: '+value+' }')
+            const f = this.state.eth.contract.methods[functionName].apply(this.state.eth.contract.methods, args)
+            const o = { from: this.state.account, value: value }
+            handleGasLimit(f, o, gasLimit, () => {
+                f.send(o, fcallback)
+            })
         }
     }
 
