@@ -41,14 +41,15 @@ class App extends Component {
             <div className='app-container'>
                 <Container fluid>
                     <Row>
-                        <Col>
+                        <Col md={6} xs={12}>
                             <Contract delegate={this} abi={this.state.abi} account={this.state.account} network={this.state.network}/>
                         </Col>
-                        <Col>
+                        <Col md={6} xs={12}>
                             <Console delegate={this} logs={this.state.logs}/>
                         </Col>
                     </Row>
                 </Container>
+                <h6> Made with ❤️ &nbsp; <a href='https://maarek.io'>maarek.io</a></h6>
             </div>
             </>
         )
