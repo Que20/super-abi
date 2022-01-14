@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import Wallet from './Wallet/Wallet';
-import Info from './Info/Info';
-import Function from './Function/Function';
+import React, { lazy, Component, Suspense } from 'react';
+const Wallet = lazy(()=> import("./Wallet/Wallet"));
+const Info = lazy(()=> import("./Info/Info"));
+const Function = lazy(()=> import("./Function/Function"));
 
 class Contract extends Component {
     constructor(props) {
@@ -27,10 +27,12 @@ class Contract extends Component {
     render() { 
         return (
             <div className='contract-container'>
-                <Wallet address={this.props.account} networkName={this.props.network} delegate={this.props.delegate}/>
-                {this.props.account !== '' ? this.contractInfo() : null }
-                <br/>
-                {this.props.abi === null ? null : this.functionList() }
+                <Suspense fallback={<div>Page is Loading...</div>}>
+                    <Wallet address={this.props.account} networkName={this.props.network} delegate={this.props.delegate}/>
+                    {this.props.account !== '' ? this.contractInfo() : null }
+                    <br/>
+                    {this.props.abi === null ? null : this.functionList() }
+                </Suspense>
             </div>
         );
     }
