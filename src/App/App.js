@@ -59,7 +59,11 @@ class App extends Component {
         const fcallback = (error, result) => {
             if (error) {
                 // console.log(error)
-                this.log(JSON.stringify(error))
+                // TOOD BETTER ERROR MESSAGE
+                // this.log(JSON.stringify(error))
+                // this.log(error.code)
+                let message = error.message.split("'")
+                this.log(JSON.stringify(JSON.parse(message[1]), null, 2))
             }
             if (result) {
                 // console.log(result)
