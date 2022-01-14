@@ -115,8 +115,11 @@ class Info extends Component {
                     </Form.Group>
 
                     <Form.Group className="mb-3">
-                        <Form.Label>ABI</Form.Label>
-                        <Form.Control as="textarea" rows="3" value={this.state.abi} name='abi' onChange={this.handleChange}/>
+                        <Form.Label>ABI</Form.Label> <br/>
+                        <Form.Text className="text-muted">
+                            Copy past your contract's ABI in the JSON format.
+                        </Form.Text>
+                        <Form.Control as="textarea" rows="3" value={this.state.abi} name='abi' placeholder='[ ]' onChange={this.handleChange}/>
                     </Form.Group>
                 
                     <Button variant="primary" onClick={this.load}>
