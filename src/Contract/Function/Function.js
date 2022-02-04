@@ -62,7 +62,7 @@ class Function extends Component {
                                     </p>
                                 </Col>
                                 <Col>
-                                    <Form.Control placeholder={data.type} onChange={this.handleChange} />
+                                    <Form.Control name={data.name} placeholder={data.type} onChange={this.handleChange} />
                                 </Col>
                             </Row>
                         )

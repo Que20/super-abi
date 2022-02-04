@@ -56,9 +56,10 @@ class App extends Component {
     }
 
     call = (stateMutability, functionName, args, value, gasLimit) => {
+        console.log(args)
         const fcallback = (error, result) => {
             if (error) {
-                // console.log(error)
+                console.log(error)
                 // TOOD BETTER ERROR MESSAGE
                 // this.log(JSON.stringify(error))
                 // this.log(error.code)
@@ -66,8 +67,8 @@ class App extends Component {
                 this.log(JSON.stringify(JSON.parse(message[1]), null, 2))
             }
             if (result) {
-                // console.log(result)
-                this.log(result)
+                console.log(result)
+                this.log(JSON.stringify(result))
             }
         }
         const handleGasLimit = function(functionToCall, functionOption, gasLimit, callback) {    
