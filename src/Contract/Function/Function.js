@@ -22,7 +22,7 @@ class Function extends Component {
     submit = () => {
         let p = this.state.params
         let paramsArray = []
-        if (Object.keys(p).length === 1 && p[""] !== null) {
+        if (Object.keys(p).length === 1 && p[""] !== undefined) {
             paramsArray.push(p[""])
         } else {
             for (const input of this.props.inputs) {
